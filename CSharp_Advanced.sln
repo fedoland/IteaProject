@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6_LINQ_to_SQL", "6_LINQ_to_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "7_Serialization", "7_Serialization\7_Serialization.csproj", "{796D44CB-7566-418F-A9A4-B15C88006AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8_Threads", "8_Threads\8_Threads.csproj", "{7F239AF4-3916-4A47-9942-63F9CE77CD2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8_Threads", "8_Threads\8_Threads.csproj", "{7F239AF4-3916-4A47-9942-63F9CE77CD2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalProject", "FinalProject\FinalProject.csproj", "{BB36B6A1-A454-43B8-ACE9-7A3743BD378F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{7F239AF4-3916-4A47-9942-63F9CE77CD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F239AF4-3916-4A47-9942-63F9CE77CD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F239AF4-3916-4A47-9942-63F9CE77CD2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB36B6A1-A454-43B8-ACE9-7A3743BD378F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB36B6A1-A454-43B8-ACE9-7A3743BD378F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB36B6A1-A454-43B8-ACE9-7A3743BD378F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB36B6A1-A454-43B8-ACE9-7A3743BD378F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
