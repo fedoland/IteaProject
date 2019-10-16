@@ -45,6 +45,7 @@ namespace FinalProject
             services.AddTransient<IService<User>, UserService>();
             services.AddTransient<IService<UserInfo>, UserInfoService>();
             services.AddTransient<IService<LoginHistory>, LoginHistoryService>();
+            services.AddTransient<IService<UserAddress>, UserAddressService>();
             services.AddMvc(options => { options.AllowEmptyInputInBodyModelBinding = true; })
                 .AddJsonOptions(options =>
                 {

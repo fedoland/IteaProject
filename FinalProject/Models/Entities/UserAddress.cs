@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Models.Entities
 {
-    public class UserInfo : IProjectModel
+    public class UserAddress : IProjectModel
     {
+        //This table is for testing ThenInclude
         [Key] public int Id { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string RealName { get; set; }
+        public string Address { get; set; }
+        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public UserAddress UserAddress { get; set; }
-        [ForeignKey("UserId")] public User User { get; set; }
+        [ForeignKey("UserId")] public UserInfo UserInfo { get; set; }
     }
 }

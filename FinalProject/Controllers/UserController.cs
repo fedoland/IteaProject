@@ -27,9 +27,9 @@ namespace FinalProject.Controllers
             return service
                 .GetQuery()
                 .Include(x => x.UserInfo)
-                    .ThenInclude(x => x.User)
+                    .ThenInclude(x => x.UserAddress)
                 .Include(logs => logs.Logins)
-                .Where(x => x.Id > 0)
+                .Where(x => x.UserInfo.UserAddress.RealName == "Vasya")
                 .ToList();
         }
 
