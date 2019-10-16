@@ -10,42 +10,39 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Controllers
 {
-    [Route("api/user")]
+    [Route("api/loginhistory")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class LoginHistoryController : ControllerBase
     {
-        readonly IService<User> service;
+        readonly IService<LoginHistory> service;
 
-        public UserController(IService<User> service)
+        public LoginHistoryController(IService<LoginHistory> service)
         {
             this.service = service;
         }
 
         [HttpGet]
-        public List<User> Get()
+        public List<LoginHistory> Get()
         {
             return service
                 .GetQuery()
-                .Include(x => x.UserInfo)
-                    .ThenInclude(x => x.User)
-                .Include(logs => logs.Logins)
-                .Where(x => x.Id > 0)
+                //.Include(x => x.LoginTime)
+                .Where(x => x.Id > 1)
                 .ToList();
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public LoginHistory Get(int id)
         {
             return service.FindById(id);
         }
 
         [HttpPost("save")]
-        public List<User> Post([FromBody] User value)
+        public List<LoginHistory> Post([FromBody] LoginHistory value)
         {
             return service
                 .GetAll()
-                .Where(x => x.Password.Contains(value.Password) ||
-                            x.Username.Contains(value.Username) ||
+                .Where(x => x.IPAddress.Contains(value.IPAddress) ||
                             x.Id == value.Id)
                 .ToList();
         }

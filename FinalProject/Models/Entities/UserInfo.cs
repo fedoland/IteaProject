@@ -17,6 +17,5 @@ namespace FinalProject.Models.Entities
         public string Address { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")] public User User { get; set; }
-        [ForeignKey("UserId")] public LoginHistory LoginHistory { get; set; }
     }
 }

@@ -4,48 +4,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using FinalProject.Models.Entities;
 using FinalProject.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Controllers
 {
-    [Route("api/user")]
-    [ApiController]
-    public class UserController : ControllerBase
+    [Route("api/userinfo")]
+    public class UserInfoController : Controller
     {
-        readonly IService<User> service;
+        readonly IService<UserInfo> service;
 
-        public UserController(IService<User> service)
+        public UserInfoController(IService<UserInfo> service)
         {
             this.service = service;
         }
-
         [HttpGet]
-        public List<User> Get()
+        public List<UserInfo> Get()
         {
             return service
                 .GetQuery()
-                .Include(x => x.UserInfo)
-                    .ThenInclude(x => x.User)
-                .Include(logs => logs.Logins)
-                .Where(x => x.Id > 0)
+                .Include(x => x.RealName)
+                .Where(x => x.Id > 1)
                 .ToList();
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public UserInfo Get(int id)
         {
             return service.FindById(id);
         }
 
         [HttpPost("save")]
-        public List<User> Post([FromBody] User value)
+        public List<UserInfo> Post([FromBody] UserInfo value)
         {
             return service
                 .GetAll()
-                .Where(x => x.Password.Contains(value.Password) ||
-                            x.Username.Contains(value.Username) ||
+                .Where(x => x.PhoneNumber.Contains(value.PhoneNumber) ||
+                            x.RealName.Contains(value.RealName) ||
                             x.Id == value.Id)
                 .ToList();
         }

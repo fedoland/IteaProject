@@ -1,10 +1,5 @@
 ﻿using FinalProject.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace FinalProject.Models.Database
 {
     public sealed class ProjectDbContext : DbContext
