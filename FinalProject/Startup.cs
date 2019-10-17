@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using FinalProject.Models.Database;
 using FinalProject.Models.Entities;
+using FinalProject.Models.Entities.ManyToMany;
 using FinalProject.Services;
 using FinalProject.Services.Interfaces;
+using FinalProject.Services.ManyToManyServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,11 +43,17 @@ namespace FinalProject
 #endif
                     )
             );
-
+            #region BaseTask
             services.AddTransient<IService<User>, UserService>();
             services.AddTransient<IService<UserInfo>, UserInfoService>();
             services.AddTransient<IService<LoginHistory>, LoginHistoryService>();
             services.AddTransient<IService<UserAddress>, UserAddressService>();
+            #endregion
+            #region ManyToMany
+            services.AddTransient<IService<Student>, StudentService>();
+            services.AddTransient<IService<Course>, CourseService>();
+            services.AddTransient<IService<StudentCourse>, StudentCourseService>();
+            #endregion
             services.AddMvc(options => { options.AllowEmptyInputInBodyModelBinding = true; })
                 .AddJsonOptions(options =>
                 {
