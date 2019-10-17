@@ -12,6 +12,7 @@ namespace FinalProject.Services.ManyToManyServices
     public class StudentService : IService<Student>
     {
         public Repository<Student> Repository { get; set; }
+        public AsyncRepository<Student> asyncRepository { get; set; }
         public StudentService(ProjectDbContext dbContext)
         {
             Repository = new Repository<Student>(dbContext);
@@ -20,17 +21,26 @@ namespace FinalProject.Services.ManyToManyServices
         {
             Repository.Create(item);
         }
-
+        public async Task CreateAsync(Student item)
+        {
+            await asyncRepository.CreateAsync(item);
+        }
         public void Delete(Student id)
         {
             Repository.Remove(id);
         }
-
+        public async Task DeleteAsync(Student id)
+        {
+            await asyncRepository.RemoveAsync(id);
+        }
         public Student FindById(int id)
         {
             return Repository.FindById(id);
         }
-
+        public async Task<Student> FindByIdAsync(int id)
+        {
+            return await asyncRepository.FindById(id);
+        }
         public List<Student> GetAll()
         {
             return Repository.GetAll().ToList();
@@ -45,6 +55,10 @@ namespace FinalProject.Services.ManyToManyServices
         {
             Repository.Update(updatedItem);
             return updatedItem;
+        }
+        public async Task UpdateAsync(int id, Student updatedItem)
+        {
+            await asyncRepository.UpdateAsync(updatedItem);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace FinalProject.Services
     public class UserAddressService : IService<UserAddress>
     {
         public Repository<UserAddress> Repository { get; set; }
+        public AsyncRepository<UserAddress> asyncRepository { get; set; }
         public UserAddressService(ProjectDbContext dbContext)
         {
             Repository = new Repository<UserAddress>(dbContext);
@@ -20,17 +21,26 @@ namespace FinalProject.Services
         {
             Repository.Create(item);
         }
-
+        public async Task CreateAsync(UserAddress item)
+        {
+            await asyncRepository.CreateAsync(item);
+        }
         public void Delete(UserAddress id)
         {
             Repository.Remove(id);
         }
-
+        public async Task DeleteAsync(UserAddress id)
+        {
+            await asyncRepository.RemoveAsync(id);
+        }
         public UserAddress FindById(int id)
         {
             return Repository.FindById(id);
         }
-
+        public async Task<UserAddress> FindByIdAsync(int id)
+        {
+            return await asyncRepository.FindById(id);
+        }
         public List<UserAddress> GetAll()
         {
             return Repository.GetAll().ToList();
@@ -45,6 +55,10 @@ namespace FinalProject.Services
         {
             Repository.Update(updatedItem);
             return updatedItem;
+        }
+        public async Task UpdateAsync(int id, UserAddress updatedItem)
+        {
+            await asyncRepository.UpdateAsync(updatedItem);
         }
     }
 }

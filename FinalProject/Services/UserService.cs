@@ -13,6 +13,7 @@ namespace FinalProject.Services
     public class UserService : IService<User>
     {
         public Repository<User> Repository { get; set; }
+        public AsyncRepository<User> asyncRepository { get; set; }
         public UserService(ProjectDbContext dbContext)
         {
             Repository = new Repository<User>(dbContext);
@@ -21,17 +22,26 @@ namespace FinalProject.Services
         {
             Repository.Create(item);
         }
-
+        public async Task CreateAsync(User item)
+        {
+            await asyncRepository.CreateAsync(item);
+        }
         public void Delete(User id)
         {
             Repository.Remove(id);
         }
-
+        public async Task DeleteAsync(User id)
+        {
+            await asyncRepository.RemoveAsync(id);
+        }
         public User FindById(int id)
         {
            return Repository.FindById(id);
         }
-
+        public async Task<User> FindByIdAsync(int id)
+        {
+            return await asyncRepository.FindById(id);
+        }
         public List<User> GetAll()
         {
             return Repository.GetAll().ToList();
@@ -46,6 +56,10 @@ namespace FinalProject.Services
         {
             Repository.Update(updatedItem);
             return updatedItem;
+        }
+        public async Task UpdateAsync(int id, User updatedItem)
+        {
+            await asyncRepository.UpdateAsync(updatedItem);
         }
     }
 }

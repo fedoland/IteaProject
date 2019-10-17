@@ -28,9 +28,9 @@ namespace FinalProject.Controllers
         }
 
         [HttpGet("{id}")]
-        public UserInfo Get(int id)
+        public async Task<UserInfo> Get(int id)
         {
-            return service.FindById(id);
+            return await service.FindByIdAsync(id);
         }
 
         [HttpPost("save")]

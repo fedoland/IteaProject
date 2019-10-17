@@ -12,6 +12,7 @@ namespace FinalProject.Services
     public class LoginHistoryService : IService<LoginHistory>
     {
         public Repository<LoginHistory> Repository { get; set; }
+        public AsyncRepository<LoginHistory> asyncRepository { get; set; }
         public LoginHistoryService(ProjectDbContext dbContext)
         {
             Repository = new Repository<LoginHistory>(dbContext);
@@ -20,17 +21,26 @@ namespace FinalProject.Services
         {
             Repository.Create(item);
         }
-
+        public async Task CreateAsync(LoginHistory item)
+        {
+            await asyncRepository.CreateAsync(item);
+        }
         public void Delete(LoginHistory id)
         {
             Repository.Remove(id);
         }
-
+        public async Task DeleteAsync(LoginHistory id)
+        {
+            await asyncRepository.RemoveAsync(id);
+        }
         public LoginHistory FindById(int id)
         {
             return Repository.FindById(id);
         }
-
+        public async Task<LoginHistory> FindByIdAsync(int id)
+        {
+            return await asyncRepository.FindById(id);
+        }
         public List<LoginHistory> GetAll()
         {
             return Repository.GetAll().ToList();
@@ -45,6 +55,10 @@ namespace FinalProject.Services
         {
             Repository.Update(updatedItem);
             return updatedItem;
+        }
+        public async Task UpdateAsync(int id, LoginHistory updatedItem)
+        {
+            await asyncRepository.UpdateAsync(updatedItem);
         }
     }
 }
